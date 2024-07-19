@@ -6,7 +6,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAEaRchtISbFCd4uEhYfzsg8ngequhNkgY",
+  apiKey: import.meta.env.VITE_API_KEY_FIREBASE,
   authDomain: "watchflix-ec0bf.firebaseapp.com",
   projectId: "watchflix-ec0bf",
   storageBucket: "watchflix-ec0bf.appspot.com",
