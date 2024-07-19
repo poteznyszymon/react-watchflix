@@ -23,9 +23,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center h-24 max-w-6xl mx-auto px-4 text-slate-200">
+    <div className="flex justify-between items-center h-24 max-w-6xl mx-auto text-slate-200">
       <Link to="/">
-        <h1 className="text-red-600 uppercase text-3xl font-bold hover:text-red-500">
+        <h1 className="text-red-600 uppercase text-4xl font-bold hover:text-red-500 font-bebas tracking-widest">
           watchflix
         </h1>
       </Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
               <AvatarIcon />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+              <DropdownMenuLabel>{user?.displayName}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="font-mono">
                 Watchlist
@@ -73,8 +73,8 @@ const Navbar = () => {
       <div
         className={
           openDrawer
-            ? `fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500`
-            : `fixed left-[-100%] top-0 h-full ease-in-out duration-500`
+            ? `fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500 z-10`
+            : `fixed left-[-100%] top-0 h-full ease-in-out duration-500 z-10`
         }
       >
         <h1 className="text-red-600 uppercase text-3xl font-bold p-7">
