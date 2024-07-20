@@ -17,31 +17,33 @@ import AvatarIcon from "./AvatarIcon";
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [user] = useAuthState(auth);
+  const [pageIndex, setPageIndex] = useState(0);
+
+  const pages = ["Home", "Movies", "Shows", "Search"];
 
   const handleDrawerClick = () => {
     setOpenDrawer((prev) => !prev);
   };
 
   return (
-    <div className="flex justify-between items-center h-24 max-w-6xl mx-auto text-slate-200">
+    <div className="flex justify-between items-center h-24 max-w-6xl mx-auto text-slate-400">
       <Link to="/">
-        <h1 className="text-red-600 uppercase text-4xl font-bold hover:text-red-500 font-bebas tracking-widest">
+        <h1 className="text-red-600 uppercase text-4xl font-bold hover:text-red-500 font-bebas tracking-wide">
           watchflix
         </h1>
       </Link>
       <div className="hidden md:flex items-center">
-        <Link to="/">
-          <p className="p-4 hover:text-white">Home</p>
-        </Link>
-        <Link to="/movies">
-          <p className="p-4 hover:text-white">Movies</p>
-        </Link>
-        <Link to="/shows">
-          <p className="p-4 hover:text-white">Shows</p>
-        </Link>
-        <Link to="/search">
-          <p className="p-4 hover:text-white">Search</p>
-        </Link>
+        {pages.map((_, idx) => (
+          <div onClick={() => setPageIndex(idx)}>
+            <Link to={idx === 0 ? "/" : `/${pages[idx].toLowerCase()}`}>
+              <p
+                className={`p-4 hover:text-white ${pageIndex === idx ? "text-white" : ""}`}
+              >
+                {pages[idx]}
+              </p>
+            </Link>
+          </div>
+        ))}
 
         {user ? (
           <DropdownMenu>
@@ -51,10 +53,8 @@ const Navbar = () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>{user?.displayName}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="font-mono">
-                Watchlist
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={logOut} className="font-mono">
+              <DropdownMenuItem className="">Watchlist</DropdownMenuItem>
+              <DropdownMenuItem onClick={logOut} className="">
                 Logout
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -77,7 +77,7 @@ const Navbar = () => {
             : `fixed left-[-100%] top-0 h-full ease-in-out duration-500 z-10`
         }
       >
-        <h1 className="text-red-600 uppercase text-3xl font-bold p-7">
+        <h1 className="text-red-600 uppercase text-4xl font-bold font-bebas p-7">
           watchflix
         </h1>
         <Link to="/" onClick={handleDrawerClick}>

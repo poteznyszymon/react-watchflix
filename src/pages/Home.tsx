@@ -1,11 +1,11 @@
 import Card from "@/components/Card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchTrending } from "@/services/api";
-import { Movie } from "@/services/models/interface";
+import { Media } from "@/services/models/interface";
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [data, setData] = useState<Movie[]>();
+  const [data, setData] = useState<Media[]>();
   const [timeWindow, setTimeWindow] = useState("day");
 
   useEffect(() => {
@@ -14,23 +14,17 @@ const Home = () => {
       .catch((error) => console.log(error));
   }, [timeWindow]);
   return (
-    <div className=" max-w-6xl m-auto cursor-pointer">
+    <div className="max-w-6xl m-auto">
       <div className="flex items-center gap-3 justify-between">
-        <h1 className="text-xl py-5 text-white">Trending</h1>
-        <Tabs defaultValue="day" className="w-52 ">
+        <h1 className="text-sm md:text-lg py-5 text-slate-50">
+          Trending of the {timeWindow}
+        </h1>
+        <Tabs defaultValue="day" className="w-32 ">
           <TabsList className="grid w-full grid-cols-2 bg-gray-500/20">
-            <TabsTrigger
-              value="day"
-              onClick={() => setTimeWindow("day")}
-              className="font-mono"
-            >
+            <TabsTrigger value="day" onClick={() => setTimeWindow("day")}>
               Day
             </TabsTrigger>
-            <TabsTrigger
-              value="week"
-              onClick={() => setTimeWindow("week")}
-              className="font-mono"
-            >
+            <TabsTrigger value="week" onClick={() => setTimeWindow("week")}>
               Week
             </TabsTrigger>
           </TabsList>
