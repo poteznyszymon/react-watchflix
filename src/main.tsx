@@ -7,6 +7,7 @@ import Home from "./pages/Home.tsx";
 import Movies from "./pages/movies/Movies.tsx";
 import Shows from "./pages/shows/Shows.tsx";
 import Search from "./pages/search/Search.tsx";
+import Details from "./components/Details.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/:type/:id",
+        element: <Details />,
       },
     ],
   },

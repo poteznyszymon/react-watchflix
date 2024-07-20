@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-between items-center h-24 max-w-6xl mx-auto text-slate-400">
-      <Link to="/">
+      <Link to="/" onClick={() => setPageIndex(0)}>
         <h1 className="text-red-600 uppercase text-4xl font-bold hover:text-red-500 font-bebas tracking-wide">
           watchflix
         </h1>
@@ -44,7 +44,6 @@ const Navbar = () => {
             </Link>
           </div>
         ))}
-
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger>

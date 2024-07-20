@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import { PaginationFooter } from "@/components/PaginationFooter";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchShows } from "@/services/api";
 import { Media } from "@/services/models/interface";
@@ -7,12 +8,21 @@ import { useEffect, useState } from "react";
 const Shows = () => {
   const [data, setData] = useState<Media[]>();
   const [type, setType] = useState("popular");
+  const [activePage, setActivePage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  function handlePageChange(page: number) {
+    setActivePage(page);
+  }
 
   useEffect(() => {
-    fetchShows(type)
-      .then((res) => setData(res.results))
+    fetchShows(type, activePage)
+      .then((res) => {
+        setData(res?.results);
+        setTotalPages(res?.total_pages);
+      })
       .catch((error) => console.log(error));
-  }, [type]);
+  }, [type, activePage]);
 
   return (
     <div className="max-w-6xl m-auto">
@@ -42,8 +52,16 @@ const Shows = () => {
         </Tabs>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-        {data && data?.map((item) => <Card key={item.id} item={item} />)}
+        {data &&
+          data?.map((item) => (
+            <Card key={item.id} item={item} type={"tv"} />
+          ))}
       </div>
+      <PaginationFooter
+        activePage={activePage}
+        totalPages={totalPages}
+        handleClick={handlePageChange}
+      />
     </div>
   );
 };
