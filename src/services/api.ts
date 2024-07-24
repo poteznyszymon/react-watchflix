@@ -31,3 +31,17 @@ export const fetchDetails = async (type: string, id: string) => {
   const response = await fetch(`${baseUrl}/${type}/${id}?api_key=${apiKey}`);
   return response.json();
 };
+
+export const searchData = async (query: string) => {
+  const response = await fetch(
+    `${baseUrl}/search/multi?api_key=${apiKey}&query=${query}`
+  );
+  return response.json();
+};
+
+export const fetchCredits = async (type: string, id: string) => {
+  const response = await fetch(
+    `${baseUrl}/${type}/${id}/credits?api_key=${apiKey}`
+  );
+  return response.json();
+};

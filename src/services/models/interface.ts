@@ -14,3 +14,10 @@ export interface Media {
   runtime?: number;
   original_language?: string;
 }
+
+export interface Cast {
+  id: number;
+  name: string;
+  character: string;
+  profile_path: string;
+}

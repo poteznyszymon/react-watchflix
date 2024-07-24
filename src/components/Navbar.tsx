@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center h-24 max-w-6xl mx-auto text-slate-400">
+    <div className="flex justify-between items-center h-24 max-w-6xl mx-auto text-gray-500">
       <Link to="/" onClick={() => setPageIndex(0)}>
         <h1 className="text-red-600 uppercase text-4xl font-bold hover:text-red-500 font-bebas tracking-wide">
           watchflix
@@ -45,7 +45,7 @@ const Navbar = () => {
           </div>
         ))}
         {user ? (
-          <DropdownMenu >
+          <DropdownMenu>
             <DropdownMenuTrigger>
               <AvatarIcon />
             </DropdownMenuTrigger>
@@ -80,7 +80,7 @@ const Navbar = () => {
           watchflix
         </h1>
         <Link to="/" onClick={handleDrawerClick}>
-          <p className="py-4 px-7 cursor-pointer font-semibold">Home</p>
+          <p className="py-4 px-7 cursor-pointer font-semibold ">Home</p>
         </Link>
         <Link to="/movies" onClick={handleDrawerClick}>
           <p className="py-4 px-7 cursor-pointer font-semibold">Movies</p>
