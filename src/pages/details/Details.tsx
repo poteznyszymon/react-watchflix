@@ -99,7 +99,12 @@ const Details = () => {
             ? castData?.map((item) => (
                 <div className="min-w-36 max-w-36 aspect-[3/4]">
                   <img
-                    src={`${imagePath}/${item?.profile_path}`}
+                    className="h-52"
+                    src={
+                      item?.profile_path
+                        ? `${imagePath}/${item?.profile_path}`
+                        : "https://placehold.co/530x800"
+                    }
                     alt="image_photo"
                   />
                   <p className="text-sm">{item?.name}</p>
