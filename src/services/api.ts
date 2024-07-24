@@ -26,3 +26,8 @@ export const fetchShows = async (type: string = "popular", page = 1) => {
   );
   return response.json();
 };
+
+export const fetchDetails = async (type: string, id: string) => {
+  const response = await fetch(`${baseUrl}/${type}/${id}?api_key=${apiKey}`);
+  return response.json();
+};

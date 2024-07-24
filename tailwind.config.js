@@ -16,6 +16,9 @@ export const theme = {
     },
   },
   extend: {
+    backgroundImage: {
+      'custom-gradient': 'linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88))',
+    },
     fontFamily: {
       bebas: ['Bebas Neue', 'cursive'],
     },

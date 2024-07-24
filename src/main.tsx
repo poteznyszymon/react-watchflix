@@ -7,7 +7,7 @@ import Home from "./pages/Home.tsx";
 import Movies from "./pages/movies/Movies.tsx";
 import Shows from "./pages/shows/Shows.tsx";
 import Search from "./pages/search/Search.tsx";
-import Details from "./components/Details.tsx";
+import Details from "./pages/details/Details.tsx";
 
 const router = createBrowserRouter([
   {

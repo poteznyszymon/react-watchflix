@@ -45,7 +45,7 @@ const Navbar = () => {
           </div>
         ))}
         {user ? (
-          <DropdownMenu>
+          <DropdownMenu >
             <DropdownMenuTrigger>
               <AvatarIcon />
             </DropdownMenuTrigger>

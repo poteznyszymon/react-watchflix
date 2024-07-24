@@ -1,5 +1,6 @@
 import Card from "@/components/Card";
 import { PaginationFooter } from "@/components/PaginationFooter";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchShows } from "@/services/api";
 import { Media } from "@/services/models/interface";
@@ -10,18 +11,24 @@ const Shows = () => {
   const [type, setType] = useState("popular");
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   function handlePageChange(page: number) {
     setActivePage(page);
   }
 
   useEffect(() => {
+    setIsLoading(true);
     fetchShows(type, activePage)
       .then((res) => {
         setData(res?.results);
         setTotalPages(res?.total_pages);
+        setIsLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      });
   }, [type, activePage]);
 
   return (
@@ -51,11 +58,17 @@ const Shows = () => {
           </TabsList>
         </Tabs>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-        {data &&
-          data?.map((item) => (
-            <Card key={item.id} item={item} type={"tv"} />
-          ))}
+      <div
+        className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ${isLoading ? "gap-4" : "gap-3"}`}
+      >
+        {isLoading
+          ? Array.from({ length: 20 }).map((_, index) => (
+              <Skeleton
+                className="w-[100%] aspect-[2/3] rounded-none"
+                key={index}
+              />
+            ))
+          : data?.map((item) => <Card key={item.id} item={item} type={"tv"} />)}
       </div>
       <PaginationFooter
         activePage={activePage}
