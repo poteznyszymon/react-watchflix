@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: "/vite-react-deploy/",
   plugins: [react()],
+  base: "/vite-react-deploy/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
